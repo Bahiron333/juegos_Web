@@ -1,6 +1,6 @@
 import pygame 
 import pygame.locals
-import list_plays
+import game
 import sys
 
 
@@ -37,7 +37,7 @@ def main():
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if button_play.collidepoint(event.pos):
-                    list_plays.main_list()
+                    game.main_game()
 
         x, y = pygame.mouse.get_pos()
 
