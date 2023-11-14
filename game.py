@@ -22,7 +22,70 @@ def main_game():
     pelota = PelotaP("img/pelota.png")
 
     #ladrillos list
-    ladrillo = Ladrillo("dificil",True,(500,500))
+    ladrillos = [ 
+        
+        #Primera fila
+        Ladrillo("dificil",False,(5,20)), 
+        Ladrillo("medio",True,(131,20)), 
+        Ladrillo("dificil",False,(258,20)), 
+        Ladrillo("dificil",False,(378,20)), 
+        Ladrillo("dificil",False,(509,20)), 
+        Ladrillo("medio",True,(635,20)), 
+        Ladrillo("dificil",False,(761,20)),
+        Ladrillo("dificil",True,(887,20)),
+
+        #segunda fila
+        Ladrillo("dificil",True,(5,71)), 
+        Ladrillo("medio",True,(131,71)), 
+        Ladrillo("dificil",True,(258,71)), 
+        Ladrillo("medio",True,(378,71)), 
+        Ladrillo("dificil",True,(509,71)), 
+        Ladrillo("facil",True,(635,71)), 
+        Ladrillo("medio",True,(761,71)),
+        Ladrillo("dificil",True,(887,71)),
+
+        #tercera fila
+        Ladrillo("dificil",False,(5,121)), 
+        Ladrillo("medio",False,(131,121)), 
+        Ladrillo("medio",True,(258,121)), 
+        Ladrillo("facil",False,(378,121)), 
+        Ladrillo("medio",True,(509,121)), 
+        Ladrillo("dificil",False,(635,121)), 
+        Ladrillo("facil",False,(761,121)),
+        Ladrillo("medio",True,(887,121)),
+
+        #cuarta fila
+        Ladrillo("medio",True,(5,171)), 
+        Ladrillo("dificil",False,(131,171)), 
+        Ladrillo("medio",False,(258,171)), 
+        Ladrillo("dificil",False,(378,171)), 
+        Ladrillo("medio",False,(509,171)), 
+        Ladrillo("dificil",False,(635,171)), 
+        Ladrillo("facil",True,(761,171)),
+        Ladrillo("dificil",True,(887,171)),
+
+        #quinta fila
+        Ladrillo("medio",True,(5,221)), 
+        Ladrillo("facil",False,(131,221)), 
+        Ladrillo("medio",True,(258,221)), 
+        Ladrillo("facil",False,(378,221)), 
+        Ladrillo("medio",True,(509,221)), 
+        Ladrillo("facil",False,(635,221)), 
+        Ladrillo("facil",False,(761,221)),
+        Ladrillo("medio",False,(887,221)),
+
+        #sexta fila
+        Ladrillo("medio",False,(5,271)), 
+        Ladrillo("dificil",True,(131,271)), 
+        Ladrillo("facil",False,(258,271)), 
+        Ladrillo("dificil",False,(378,271)), 
+        Ladrillo("medio",False,(509,271)), 
+        Ladrillo("facil",True,(635,271)), 
+        Ladrillo("facil",False,(761,271)),
+        Ladrillo("facil",False,(887,271)),
+    ]
+        
+    
     
     while True:
 
@@ -35,12 +98,7 @@ def main_game():
         pelota.movimiento()
         pelota.rebotar()
 
-        if ladrillo.ladrillo_sin_romper:
-            win_list.blit(ladrillo.imagen_ladrillo,(500,500))
-            ladrillo.tipo_ladrillo()
-            ladrillo.golpear_ladrillo(pelota)
-            if ladrillo.responder_prgunta:
-                main_pregunta()
+        function_ladrillos(ladrillos,win_list,pelota)
 
         for event in pygame.event.get():
 
@@ -61,6 +119,15 @@ def main_game():
 
 
         pygame.display.update()
-                
+
+def function_ladrillos(ladrillos,ventana,pelota):
+    for ladrillo in ladrillos:
+        if ladrillo.ladrillo_sin_romper:
+            ventana.blit(ladrillo.imagen_ladrillo,(ladrillo.x,ladrillo.y))
+            ladrillo.tipo_ladrillo()
+            ladrillo.golpear_ladrillo(pelota)
+            if ladrillo.responder_prgunta:
+                main_pregunta()
+
 def main_pregunta():
     pass

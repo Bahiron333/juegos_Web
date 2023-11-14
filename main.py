@@ -24,6 +24,7 @@ def main():
 
     while True:
 
+      
         ventana.blit(fondo,(0,0))
         ventana.blit(letrero,(185,140))
 
