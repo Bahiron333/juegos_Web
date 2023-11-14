@@ -3,6 +3,7 @@ import pygame.locals
 import sys
 from raqueta import *
 from pelota import *
+from ladrillo import *
 
 def main_game():
 
@@ -19,19 +20,23 @@ def main_game():
 
     paleta.y = 500
     pelota = PelotaP("img/pelota.png")
+    ladrillo = Ladrillo(4,True,(20,20))
     
     while True:
 
         win_list.blit(fondo_list,(0,0))
         win_list.blit(paleta.imagen,(paleta.x,paleta.y))
         win_list.blit(pelota.imagen,(pelota.x,pelota.y))
-
         paleta.movimiento()
         paleta.golpear(pelota)
 
         pelota.movimiento()
         pelota.rebotar()
 
+        if ladrillo.ladrillo_sin_romper:
+            ladrillo.tipo_ladrillo()
+            ladrillo.golpear_ladrillo(pelota)
+            win_list.blit(ladrillo.imagen_ladrillo,(20,20))
         for event in pygame.event.get():
 
             if event.type == pygame.QUIT:
