@@ -22,15 +22,7 @@ def main_game():
     pelota = PelotaP("img/pelota.png")
 
     #ladrillos list
-    ladrillo = Ladrillo("dificil",True,(20,20))
-    ladrillo = Ladrillo("dificil",True,(20,20))
-    ladrillo = Ladrillo("dificil",True,(20,20))
-    ladrillo = Ladrillo("dificil",True,(20,20))
-    ladrillo = Ladrillo("dificil",True,(20,20))
-    ladrillo = Ladrillo("dificil",True,(20,20))
-    ladrillo = Ladrillo("dificil",True,(20,20))
-    ladrillo = Ladrillo("dificil",True,(20,20))
-    ladrillo = Ladrillo("dificil",True,(20,20))
+    ladrillo = Ladrillo("dificil",True,(500,500))
     
     while True:
 
@@ -44,9 +36,9 @@ def main_game():
         pelota.rebotar()
 
         if ladrillo.ladrillo_sin_romper:
+            win_list.blit(ladrillo.imagen_ladrillo,(500,500))
             ladrillo.tipo_ladrillo()
             ladrillo.golpear_ladrillo(pelota)
-            win_list.blit(ladrillo.imagen_ladrillo,(20,20))
             if ladrillo.responder_prgunta:
                 main_pregunta()
 

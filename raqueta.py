@@ -24,7 +24,7 @@ class raqueta:
            self.x = 0
         if self.x+self.ancho>=ventanaHor:
             self.x=ventanaHor-self.ancho
-    
+
     def golpear(self,pelota):
         if(
             pelota.y+self.alto > self.y
@@ -35,7 +35,6 @@ class raqueta:
             pelota.dir_y=-pelota.dir_y
             pelota.y=self.y-self.alto
 
-        
     def reinicio(self):
         self.x=ventanaHor/2-self.ancho/2
 

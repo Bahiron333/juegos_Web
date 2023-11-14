@@ -19,7 +19,8 @@ class Ladrillo:
         self.ladrillo_sin_romper = True
         self.responder_prgunta = False
         self.tipo_ladrillo()
-
+    
+    #golpear la pelota lado de abajo
     def golpear_ladrillo(self,pelota):
 
         if(
@@ -32,6 +33,40 @@ class Ladrillo:
             pelota.y=self.y+self.alto
             self.dificultad_lad -= 1
 
+        #Golpear arriba
+        elif(
+            pelota.y+self.alto > self.y
+            and pelota.y < self.y + self.alto 
+            and pelota.x+pelota.ancho>self.x
+            and pelota.x<self.x+self.ancho
+        ):
+            pelota.dir_y=-pelota.dir_y
+            pelota.y=self.y-self.alto
+            self.dificultad_lad -= 1
+            print("arriba")
+
+
+        #Golpear pelota lado derecho
+        elif(
+            pelota.x<self.x+self.ancho
+            and pelota.x > self.x
+            and pelota.y+pelota.alto>self.y
+            and pelota.y<self.y+self.alto
+        ):
+            pelota.dir_x=-pelota.dir_x
+            pelota.x=self.x+self.ancho
+            self.dificultad_lad -= 1
+
+        #Golpear pelota lado izq
+        elif(
+            pelota.x+self.alto> self.x+1
+            and pelota.x < self.x + self.ancho 
+            and pelota.y+pelota.alto>self.y
+            and pelota.y<self.y+self.alto
+        ):
+            pelota.dir_x=-pelota.dir_x
+            pelota.x=self.x-self.ancho
+            self.dificultad_lad -= 1
 
     def tipo_ladrillo(self):
 
@@ -61,8 +96,8 @@ class Ladrillo:
            self.ladrillo_sin_romper = True
            self.responder_prgunta = True
         if self.dificultad_lad == 0 and self.ladrillo_pregunta != True:
-            self.ladrillo_sin_romper=False#es verdadero cuando el ladrillo esta roto
-            self.responder_prgunta = False
+           self.ladrillo_sin_romper=False#es verdadero cuando el ladrillo esta roto
+           self.responder_prgunta = False
     
 
 
