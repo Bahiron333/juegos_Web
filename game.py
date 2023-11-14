@@ -24,12 +24,13 @@ def main_game():
 
         win_list.blit(fondo_list,(0,0))
         win_list.blit(paleta.imagen,(paleta.x,paleta.y))
-        #win_list.blit(pelota.imagen,(pelota.x,pelota.y))
+        win_list.blit(pelota.imagen,(pelota.x,pelota.y))
 
         paleta.movimiento()
         paleta.golpear(pelota)
 
-        #pelota.movimiento()
+        pelota.movimiento()
+        pelota.rebotar()
 
         for event in pygame.event.get():
 
@@ -38,9 +39,9 @@ def main_game():
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    paleta.dir_x = -6
+                    paleta.dir_x = -8
                 if event.key == pygame.K_RIGHT:
-                    paleta.dir_x = 6
+                    paleta.dir_x = 8
             if event.type == pygame.KEYUP:
                 if event.key==pygame.K_LEFT:
                     paleta.dir_x=0

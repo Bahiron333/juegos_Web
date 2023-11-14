@@ -11,12 +11,12 @@ def main():
     fondo = pygame.image.load("img/fondo.png")
     icono = pygame.image.load("img/icono.ico")
     pygame.display.set_icon(icono)
-    pygame.display.set_caption("Juegos Didacticos")
+    pygame.display.set_caption("Juego  Didactico")
     ventana = pygame.display.set_mode((1000,562))
 
     #texto de inicio de juego 
     font = pygame.font.SysFont('harrington',70,bold=True)
-    letrero = font.render("Juegos Interactivos",False,('#A0522D'))
+    letrero = font.render("Juego  Interactivo",False,('#A0522D'))
 
 
     #boton#######################33

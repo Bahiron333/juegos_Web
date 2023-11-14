@@ -25,17 +25,26 @@ class raqueta:
         if self.x+self.ancho>=ventanaHor:
             self.x=ventanaHor-self.ancho
     
-
     def golpear(self,pelota):
+        if(
+            pelota.y+self.alto > self.y
+            and pelota.y < self.y + self.alto 
+            and pelota.x+pelota.ancho>self.x
+            and pelota.x<self.x+self.ancho
+        ):
+            pelota.dir_y=-pelota.dir_y
+            pelota.y=self.y-self.alto
+
+    def golpear_ladrillo(self,pelota):
 
         if(
-            pelota.x<self.x+self.ancho
-            and pelota.x > self.x
-            and pelota.y+pelota.alto>self.y
-            and pelota.y<self.y+self.alto
+            pelota.y<self.y+self.alto
+            and pelota.y > self.y
+            and pelota.x+pelota.ancho>self.x
+            and pelota.x<self.x+self.ancho
         ):
-            pelota.dir_x=-pelota.dir_x
-            pelota.x=self.x+self.ancho
+            pelota.dir_y=-pelota.dir_y
+            pelota.y=self.y+self.alto
 
         
     def reinicio(self):
