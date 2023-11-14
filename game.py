@@ -20,7 +20,17 @@ def main_game():
 
     paleta.y = 500
     pelota = PelotaP("img/pelota.png")
-    ladrillo = Ladrillo(4,True,(20,20))
+
+    #ladrillos list
+    ladrillo = Ladrillo("dificil",True,(20,20))
+    ladrillo = Ladrillo("dificil",True,(20,20))
+    ladrillo = Ladrillo("dificil",True,(20,20))
+    ladrillo = Ladrillo("dificil",True,(20,20))
+    ladrillo = Ladrillo("dificil",True,(20,20))
+    ladrillo = Ladrillo("dificil",True,(20,20))
+    ladrillo = Ladrillo("dificil",True,(20,20))
+    ladrillo = Ladrillo("dificil",True,(20,20))
+    ladrillo = Ladrillo("dificil",True,(20,20))
     
     while True:
 
@@ -37,6 +47,9 @@ def main_game():
             ladrillo.tipo_ladrillo()
             ladrillo.golpear_ladrillo(pelota)
             win_list.blit(ladrillo.imagen_ladrillo,(20,20))
+            if ladrillo.responder_prgunta:
+                main_pregunta()
+
         for event in pygame.event.get():
 
             if event.type == pygame.QUIT:
@@ -57,3 +70,5 @@ def main_game():
 
         pygame.display.update()
                 
+def main_pregunta():
+    pass

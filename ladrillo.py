@@ -8,9 +8,16 @@ class Ladrillo:
         self.imagen_ladrillo = pygame.image.load("img/ladrillo_facil.png").convert_alpha()
         self.ancho, self.alto = self.imagen_ladrillo.get_size()
         self.x, self.y = posicion
-        self.dificultad_lad = dificultad
+        #saber la dificultad del ladrillo
+        if dificultad=="dificil":
+           self.dificultad_lad=10
+        elif dificultad=="medio":
+           self.dificultad_lad=5
+        elif dificultad=="facil":
+           self.dificultad_lad=2
         self.ladrillo_pregunta = lad_pregunta
         self.ladrillo_sin_romper = True
+        self.responder_prgunta = False
         self.tipo_ladrillo()
 
     def golpear_ladrillo(self,pelota):
@@ -24,25 +31,38 @@ class Ladrillo:
             pelota.dir_y=-pelota.dir_y
             pelota.y=self.y+self.alto
             self.dificultad_lad -= 1
-            print(self.dificultad_lad)
 
 
     def tipo_ladrillo(self):
 
-        if self.dificultad_lad == 4 or self.dificultad_lad == 3:
+        #ladrillo dificil
+        if self.dificultad_lad == 10 or self.dificultad_lad == 9 or self.dificultad_lad == 8:
            self.imagen_ladrillo = pygame.image.load("img/ladrillo_dificil.png").convert_alpha()
            self.ladrillo_sin_romper = True
-        if self.dificultad_lad == 2:
+        if self.dificultad_lad == 7 or self.dificultad_lad == 6:
+           self.imagen_ladrillo = pygame.image.load("img/ladrillo_dificil_roto.png").convert_alpha()
+           self.ladrillo_sin_romper = True
+        #ladrillo medio
+        if self.dificultad_lad == 5 or self.dificultad_lad == 4:
            self.imagen_ladrillo = pygame.image.load("img/ladrillo_medio.png").convert_alpha()
            self.ladrillo_sin_romper = True
-        if self.dificultad_lad == 1:
+        if self.dificultad_lad == 3:
+           self.imagen_ladrillo = pygame.image.load("img/ladrillo_medio_roto.png").convert_alpha()
+           self.ladrillo_sin_romper = True
+        #ladrillo facil
+        if self.dificultad_lad == 2:
            self.imagen_ladrillo = pygame.image.load("img/ladrillo_facil.png").convert_alpha()
+           self.ladrillo_sin_romper = True
+        if self.dificultad_lad == 1:
+           self.imagen_ladrillo = pygame.image.load("img/ladrillo_facil_roto.png").convert_alpha()
            self.ladrillo_sin_romper =True
         if self.dificultad_lad == 0 and self.ladrillo_pregunta == True:
            self.imagen_ladrillo = pygame.image.load("img/ladrillo_pregunta.png").convert_alpha()
            self.ladrillo_sin_romper = True
+           self.responder_prgunta = True
         if self.dificultad_lad == 0 and self.ladrillo_pregunta != True:
             self.ladrillo_sin_romper=False#es verdadero cuando el ladrillo esta roto
+            self.responder_prgunta = False
     
 
 
