@@ -131,7 +131,7 @@ def function_ladrillos(ladrillos,ventana,pelota):
             ladrillo.tipo_ladrillo()
             ladrillo.golpear_ladrillo(pelota)
             #if ladrillo.responder_prgunta != True:
-            pregunta.escoger_pregunta(15)
+            pregunta.escoger_pregunta(5)
             num -= 1
      
     

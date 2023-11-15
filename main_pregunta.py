@@ -10,6 +10,7 @@ class Pregunta():
         self.ventana = ventana
         self.text_question =[] #texto de la pregunta
         self.font = pygame.font.SysFont('arial',33,bold=False)#Fuente de texto
+        self.font_opciones= pygame.font.SysFont('arial',15,bold=False)
         self.respuesta = ""#respuesta correcta de la pregunta
         self.ubicacion_text_y = 0
         self.ubicacion_text_x = 0
@@ -24,6 +25,11 @@ class Pregunta():
         self.C = ""
         self.D = ""
     
+        self.boton_A= pygame.Rect(255,445,240,30)
+        self.boton_B= pygame.Rect(255,485,240,30)
+        self.boton_C= pygame.Rect(505,445,240,30)
+        self.boton_D= pygame.Rect(505,485,240,30)
+
     def escoger_pregunta(self,num):
 
         self.num_pregunta = num
@@ -229,6 +235,23 @@ class Pregunta():
             pygame.draw.rect(self.ventana,(225,225,225),self.rectangulo_pregunta)
             pygame.draw.rect(self.ventana,(0,0,0),self.rectangulo_mostrar_pregunta)
             
+            #Agregando botones de opciones
+            pygame.draw.rect(self.ventana,(0,0,0),self.boton_A)
+            pygame.draw.rect(self.ventana,(0,0,0),self.boton_B)
+            pygame.draw.rect(self.ventana,(0,0,0),self.boton_C)
+            pygame.draw.rect(self.ventana,(0,0,0),self.boton_D)
+            #creando texto boton
+            letrero_A = self.font_opciones.render("A. "+self.A,True,(255,255,255))
+            letrero_B = self.font_opciones.render("B. "+self.B,True,(255,255,255))
+            letrero_C = self.font_opciones.render("C. "+self.C,True,(255,255,255))
+            letrero_D = self.font_opciones.render("D. "+self.D,True,(255,255,255))
+            #Añadiendo texto boton
+            self.ventana.blit(letrero_A,(self.boton_A.x+10,self.boton_A.y+5))
+            self.ventana.blit(letrero_B,(self.boton_B.x+10,self.boton_B.y+5))
+            self.ventana.blit(letrero_C,(self.boton_C.x+10,self.boton_C.y+5))
+            self.ventana.blit(letrero_D,(self.boton_D.x+10,self.boton_D.y+5))
+
+
             #Añadimos las lineas de texto a ventana
             ubicacion_y = self.ubicacion_text_y #reiniciamos para que no se repita
             for texto in self.text_question:
