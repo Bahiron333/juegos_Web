@@ -4,6 +4,7 @@ import sys
 from raqueta import *
 from pelota import *
 from ladrillo import *
+from main_pregunta import *
 
 def main_game():
 
@@ -35,14 +36,14 @@ def main_game():
         Ladrillo("dificil",True,(887,20)),
 
         #segunda fila
-        Ladrillo("dificil",True,(5,71)), 
-        Ladrillo("medio",True,(131,71)), 
+        Ladrillo("dificil",False,(5,71)), 
+        Ladrillo("medio",False,(131,71)), 
         Ladrillo("dificil",True,(258,71)), 
-        Ladrillo("medio",True,(378,71)), 
+        Ladrillo("medio",False,(378,71)), 
         Ladrillo("dificil",True,(509,71)), 
-        Ladrillo("facil",True,(635,71)), 
-        Ladrillo("medio",True,(761,71)),
-        Ladrillo("dificil",True,(887,71)),
+        Ladrillo("facil",False,(635,71)), 
+        Ladrillo("medio",False,(761,71)),
+        Ladrillo("dificil",False,(887,71)),
 
         #tercera fila
         Ladrillo("dificil",False,(5,121)), 
@@ -62,7 +63,7 @@ def main_game():
         Ladrillo("medio",False,(509,171)), 
         Ladrillo("dificil",False,(635,171)), 
         Ladrillo("facil",True,(761,171)),
-        Ladrillo("dificil",True,(887,171)),
+        Ladrillo("dificil",False,(887,171)),
 
         #quinta fila
         Ladrillo("medio",True,(5,221)), 
@@ -121,13 +122,17 @@ def main_game():
         pygame.display.update()
 
 def function_ladrillos(ladrillos,ventana,pelota):
+
+    pregunta = Pregunta(ventana)
+    num = 15
     for ladrillo in ladrillos:
         if ladrillo.ladrillo_sin_romper:
             ventana.blit(ladrillo.imagen_ladrillo,(ladrillo.x,ladrillo.y))
             ladrillo.tipo_ladrillo()
             ladrillo.golpear_ladrillo(pelota)
-            if ladrillo.responder_prgunta:
-                main_pregunta()
-
-def main_pregunta():
-    pass
+            #if ladrillo.responder_prgunta != True:
+            pregunta.escoger_pregunta(15)
+            num -= 1
+     
+    
+    
