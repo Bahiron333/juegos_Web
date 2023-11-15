@@ -15,7 +15,7 @@ class Pregunta():
         self.ubicacion_text_y = 0
         self.ubicacion_text_x = 0
         self.preguntas_contestada = False#si la pregunta fue contestada
-        self.pregunta_correcto = True#si la opcion escogida fue correcta
+        self.pregunta_correcto = False#si la opcion escogida fue correcta
         self.rectangulo_pregunta = pygame.Rect(250,30,500,500)#fondo de las preguntas
         self.rectangulo_mostrar_pregunta = pygame.Rect(255,35,490,400)#fondo texto pregunta
 
@@ -231,7 +231,7 @@ class Pregunta():
 
     def mostrar_pregunta(self):
    
-        while  True:
+        while  self.preguntas_contestada != True:
             pygame.draw.rect(self.ventana,(225,225,225),self.rectangulo_pregunta)
             pygame.draw.rect(self.ventana,(0,0,0),self.rectangulo_mostrar_pregunta)
             
@@ -263,7 +263,74 @@ class Pregunta():
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
-                
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if self.boton_A.collidepoint(event.pos):
+                        if self.A == self.respuesta:
+                            self.pregunta_correcto=True
+                        else:
+                            self.pregunta_correcto=False
+                            
+                        self.preguntas_contestada=True
+                        self.main_mostrar_resultado()
+                    if self.boton_B.collidepoint(event.pos):
+                        if self.B == self.respuesta:
+                            self.pregunta_correcto=True
+                        else:
+                            self.pregunta_correcto=False
+                        self.preguntas_contestada=True
+                        self.main_mostrar_resultado()
+                    if self.boton_C.collidepoint(event.pos):
+                        if self.C == self.respuesta:
+                            self.pregunta_correcto=True
+                        else:
+                            self.pregunta_correcto=False
+                        self.preguntas_contestada=True  
+                        self.main_mostrar_resultado()                      
+                    if self.boton_D.collidepoint(event.pos):
+                        if self.D == self.respuesta:
+                            self.pregunta_correcto=True
+                        else:
+                            self.pregunta_correcto=False
+                        self.preguntas_contestada=True
+                        self.main_mostrar_resultado()
+                                        
             pygame.display.update()
 
-   
+    def main_mostrar_resultado(self):
+
+        font_res = pygame.font.SysFont("harrington",60,bold=False)
+
+        boton_aceptar =pygame.Rect(420,450,150,65)
+        visto = True
+
+        while visto:
+
+            #Agregando botones de opciones
+
+            if self.pregunta_correcto:
+                letrero = font_res.render("!Correcto¡",True,(255,255,255))
+                pygame.draw.rect(self.ventana,(225,225,225),self.rectangulo_pregunta)
+                pygame.draw.rect(self.ventana,(0,0,0),self.rectangulo_mostrar_pregunta)
+                self.ventana.blit(letrero,(370,190))
+                
+            else: 
+                letrero = font_res.render("Incorrecto",True,(255,255,255))
+                pygame.draw.rect(self.ventana,(225,225,225),self.rectangulo_pregunta)
+                pygame.draw.rect(self.ventana,(0,0,0),self.rectangulo_mostrar_pregunta)
+                self.ventana.blit(letrero,(370,190))
+           
+            pygame.draw.rect(self.ventana,(0,0,0),boton_aceptar)
+
+            #texto boton
+            font_aceptar = pygame.font.SysFont("arial",30,bold=False)
+            letrero_aceptar = font_aceptar.render("Aceptar",True,(255,255,255))
+            self.ventana.blit(letrero_aceptar,(boton_aceptar.x+32,boton_aceptar.y+12))
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    sys.exit()
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if boton_aceptar.collidepoint(event.pos):
+                        visto = False
+
+
+            pygame.display.update()

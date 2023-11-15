@@ -130,9 +130,10 @@ def function_ladrillos(ladrillos,ventana,pelota):
             ventana.blit(ladrillo.imagen_ladrillo,(ladrillo.x,ladrillo.y))
             ladrillo.tipo_ladrillo()
             ladrillo.golpear_ladrillo(pelota)
-            #if ladrillo.responder_prgunta != True:
-            pregunta.escoger_pregunta(5)
-            num -= 1
+            if ladrillo.responder_prgunta != True:
+                pregunta.escoger_pregunta(num)
+                num -= 1
+            print(num)
      
     
     
