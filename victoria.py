@@ -1,7 +1,6 @@
 import pygame
 import pygame.locals 
 import sys
-import sonido
 
 venHor = 800
 venVer = 600
@@ -17,10 +16,7 @@ def main_victoria(ganador):
 
 
     font_texto= pygame.font.SysFont('arial',60,bold=False)
-
-    sonido_victoria = sonido.Sonido("sound/gameplay/victoria.wav",0.5)
-    sonido_boton1 = sonido.Sonido("sound/start/boton_mouse.wav",0.7)
-    contador_sonido = 1
+   
 
     if ganador == 1:
         main_image = pygame.image.load("img/victoria.png")
@@ -45,17 +41,12 @@ def main_victoria(ganador):
 
     while informacion:
 
-        if contador_sonido <= 1:
-            sonido_victoria.sound_play()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if boton.collidepoint(event.pos):
-                    sonido_victoria.sound_stop()
-                    sonido_boton1.set_ruta("sound/start/boton.wav")
-                    sonido_boton1.sound_play() 
+                if boton.collidepoint(event.pos): 
                     informacion=False
                     return False
             

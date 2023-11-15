@@ -70,7 +70,7 @@ def main_game():
         Ladrillo("facil",False,(131,221)), 
         Ladrillo("medio",True,(258,221)), 
         Ladrillo("facil",False,(378,221)), 
-        Ladrillo("medio",True,(509,221)), 
+        Ladrillo("facil",True,(509,221)), 
         Ladrillo("facil",False,(635,221)), 
         Ladrillo("facil",False,(761,221)),
         Ladrillo("medio",False,(887,221)),
@@ -80,14 +80,16 @@ def main_game():
         Ladrillo("dificil",True,(131,271)), 
         Ladrillo("facil",False,(258,271)), 
         Ladrillo("dificil",False,(378,271)), 
-        Ladrillo("medio",False,(509,271)), 
+        Ladrillo("facil",False,(509,271)), 
         Ladrillo("facil",True,(635,271)), 
         Ladrillo("facil",False,(761,271)),
         Ladrillo("facil",False,(887,271)),
     ]
         
     
-    
+    #variable para selecionar el numero de la pregunta 
+    num_pregunta = 15
+
     while True:
 
         win_list.blit(fondo_list,(0,0))
@@ -99,7 +101,7 @@ def main_game():
         pelota.movimiento()
         pelota.rebotar()
 
-        function_ladrillos(ladrillos,win_list,pelota)
+        num_pregunta = function_ladrillos(ladrillos,win_list,pelota,num_pregunta)
 
         for event in pygame.event.get():
 
@@ -121,19 +123,23 @@ def main_game():
 
         pygame.display.update()
 
-def function_ladrillos(ladrillos,ventana,pelota):
+
+
+def function_ladrillos(ladrillos,ventana,pelota,numero_pregunta):
 
     pregunta = Pregunta(ventana)
-    num = 15
+
     for ladrillo in ladrillos:
         if ladrillo.ladrillo_sin_romper:
             ventana.blit(ladrillo.imagen_ladrillo,(ladrillo.x,ladrillo.y))
             ladrillo.tipo_ladrillo()
             ladrillo.golpear_ladrillo(pelota)
-            if ladrillo.responder_prgunta != True:
-                pregunta.escoger_pregunta(num)
-                num -= 1
-            print(num)
+            if ladrillo.responder_prgunta == True and ladrillo.dificultad_lad == -1:
+               pregunta.escoger_pregunta(numero_pregunta)
+               ladrillo.ladrillo_sin_romper=False
+               numero_pregunta -= 1
+    return numero_pregunta
+                
      
     
     
