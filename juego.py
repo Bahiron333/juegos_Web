@@ -308,12 +308,12 @@ def ganador(nombre,tipo_juego):
     
     if tipo_juego == 1:
         if nombre == "jugador":
-            main_victoria(1)
+            main_derrota(1)
         elif nombre == "maquina":
             main_derrota()
     if tipo_juego == 2:
         if nombre == "jugador":#victoria jugador 1
-            main_victoria(2)
+            main_derrota(2)
         elif nombre == "maquina":
-            main_victoria(3)#victoria jugador 2
+            main_derrota(3)#victoria jugador 2
 

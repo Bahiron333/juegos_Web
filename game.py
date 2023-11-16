@@ -15,9 +15,12 @@ def main_game():
     icono = pygame.image.load("img/icono.ico")
     fondo_list = pygame.image.load("img/fondo_juego.png")
 
-    pygame.display.set_caption("Juegos Didacticos")
+    pygame.display.set_caption("Juego Didactico")
     pygame.display.set_icon(icono)
     win_list = pygame.display.set_mode((1000,562))
+
+    #fuente mostrar vida dentro de raqueta
+    font_vidas = pygame.font.SysFont('arial',20,bold=False)
 
     paleta = raqueta()
 
@@ -95,8 +98,11 @@ def main_game():
 
     while True:
 
+        text_vidas = font_vidas.render(str(pelota.vidas),True,(0,0,0))
+
         win_list.blit(fondo_list,(0,0))
         win_list.blit(paleta.imagen,(paleta.x,paleta.y))
+        win_list.blit(text_vidas,(paleta.x+80,paleta.y+12))
         win_list.blit(pelota.imagen,(pelota.x,pelota.y))
         paleta.movimiento()
         paleta.golpear(pelota)
@@ -106,10 +112,8 @@ def main_game():
 
         num_pregunta = function_ladrillos(ladrillos,win_list,pelota,num_pregunta)
 
-        print(pelota.vidas)
         if pelota.vidas <= 0:
             main_derrota()
-            print(pelota.vidas)
             break
 
 

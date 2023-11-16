@@ -43,13 +43,13 @@ def main():
         x, y = pygame.mouse.get_pos()
 
         if x >= button_play.x and x <= button_play.x+150 and y >= button_play.y and y <= button_play.y+100:
-            pygame.draw.rect(ventana,("#CD853F"),button_play)
+            pygame.draw.rect(ventana,("#CD853F"),button_play,border_radius=30)
             text_boton = font_boton.render("Play",True,(255,255,255))
 
         else:
-            pygame.draw.rect(ventana,("#8B4513"),button_play)
+            pygame.draw.rect(ventana,("#8B4513"),button_play,border_radius=30)
             text_boton = font_boton.render("Play",True,("#778899"))
-        ventana.blit(text_boton,(button_play.x+23,button_play.y+20))
+        ventana.blit(text_boton,(button_play.x+23,button_play.y+15))
 
         pygame.display.update()
 

@@ -8,21 +8,16 @@ def main_victoria():
 
     icono = pygame.image.load("img/icono.ico")
     pygame.display.set_icon(icono)
-    pygame.display.set_caption("Pong")
+    pygame.display.set_caption("Juego  Didactico")
     windows_infor = pygame.display.set_mode((1000,562))
 
-
-    font_texto= pygame.font.SysFont('arial',60,bold=False)
     main_image = pygame.image.load("img/victoria.png")
-    letrero_texto = font_texto.render("!Has Ganado¡",True,(0,0,0))
     windows_infor.blit(main_image,(0,0))
-    windows_infor.blit(letrero_texto,(280,350))
 
-    font_letrero_continuar = pygame.font.SysFont('arial',40,bold=True)
+    font_letrero_continuar = pygame.font.SysFont('widelatin',40,bold=True)
     letrero_continuar = font_letrero_continuar.render("Inicio",True,(0,0,0))
   
-    boton = pygame.Rect(280,480,230,60)
-    windows_infor.blit(letrero_continuar,(370,488))
+    boton = pygame.Rect(380,350,250,100)
 
     informacion = True
 
@@ -39,14 +34,15 @@ def main_victoria():
             
         x,y = pygame.mouse.get_pos()#Odtenemos las coordenadas del mouse
 
-        if boton.x <= x <= boton.x + 230 and boton.y <=y <= boton.y+60:
-            pygame.draw.rect(windows_infor,("#FFA500"),boton)
-            letrero_continuar = font_letrero_continuar.render("inicio",True,(255,255,255))
+        if boton.x <= x <= boton.x + 250 and boton.y <=y <= boton.y+100:
+            pygame.draw.rect(windows_infor,(0,0,0),boton,border_radius=30)
+            letrero_continuar = font_letrero_continuar.render("inicio",True,("#F8F8FF"))
         else:
-            pygame.draw.rect(windows_infor,("#FFD700"),boton)
-            letrero_continuar = font_letrero_continuar.render("inicio",True,(0,0,0))
+            pygame.draw.rect(windows_infor,("#4169E1"),boton,border_radius=30)
+            letrero_continuar = font_letrero_continuar.render("inicio",True,("#F8F8FF"))
 
-        windows_infor.blit(letrero_continuar,(370,488))
+        windows_infor.blit(letrero_continuar,(408,380))
         pygame.display.update()
 
+main_victoria()
 
