@@ -11,57 +11,37 @@ class PelotaP:
         self.imagen = pygame.image.load(fichero_imagen).convert_alpha()#imagen pelota
         self.ancho,self.alto=self.imagen.get_size()#tamaño pelota
         self.x=ventanaHor/2-self.ancho/2#posicionar y en el centro
-        self.y=ventanaVer/2-self.alto/2#posicionar x en el centro
-        self.dir_x=random.choice([-6,6])#direccion pelota eje x
-        self.dir_y=random.choice([-6,6])#direccion pelota eje y
-        self.puntuacion = 3#puntuacion humano
-        self.resultado = ""
-        self.final_juego=False
+        self.y=320#posicionar x en el centro
+        self.dir_x=random.choice([-5,5])#direccion pelota eje x
+        self.dir_y=random.choice([5,5])#direccion pelota eje y
+        self.vidas=5
 
     def movimiento(self):
         self.x+=self.dir_x
         self.y+=self.dir_y
-
-    def get_final(self):
-        return self.final_juego
     
-    def set_final(self,fin):
-        self.final_juego = fin
-
-    def reinicio(self):
+    def reinicio(self,raqueta):
+        raqueta.reinicio()
         self.x=ventanaHor/2-self.ancho/2
-        self.y=ventanaVer/2-self.alto/2
-        self.dir_x=self.dir_x
-        self.dir_y=random.choice([-5,5])
-
+        self.y=320
 
     def limpiar(self):
-        self.puntuacion=0
-        self.puntuacion_maqui=0
+        self.vidas = 10
         self.reinicio()
 
-    def get_resultado(self):
-        return self.resultado
-    
-    def get_nombre_ganador(self):
-        try:
-            return self.nombre_ganador
-        except:
-            pygame.quit()
-            sys.exit()
-        
-    
-    def rebotar(self):
+    def rebotar(self,raqueta):
+
         if self.x<= -self.ancho:
             self.dir_x=-self.dir_x
             return True
         if self.x>= ventanaHor:
-            self.puntuacion+=1
             self.dir_x=-self.dir_x
             return True
         if self.y<=0:
-            self.dir_y=-self.dir_y     
+            self.dir_y=-self.dir_y  
             return False
         if self.y+self.alto>=ventanaVer:
             self.dir_y=-self.dir_y
+            self.vidas -= 1
+            self.reinicio(raqueta)
             return False

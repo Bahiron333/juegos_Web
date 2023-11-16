@@ -8,10 +8,7 @@ ventanaVer=562#ventana vertical
 class raqueta:
     def __init__(self):
         pygame.init()
-        try:
-            self.imagen=pygame.image.load("img/raqueta.png").convert_alpha()#imagen
-        except:
-            sys.exit()
+        self.imagen=pygame.image.load("img/raqueta.png").convert_alpha()#imagen
         self.ancho,self.alto = self.imagen.get_size()
         self.x=ventanaHor/2-self.ancho
         self.y=0

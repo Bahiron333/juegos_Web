@@ -30,7 +30,7 @@ class Pregunta():
         self.boton_C= pygame.Rect(505,445,240,30)
         self.boton_D= pygame.Rect(505,485,240,30)
 
-    def escoger_pregunta(self,num):
+    def escoger_pregunta(self,num,vida):
 
         self.num_pregunta = num
         #Pregunta 1
@@ -226,10 +226,10 @@ class Pregunta():
             self.D = "√16"
             self.respuesta = "√68"
 
-        self.mostrar_pregunta()
+        self.mostrar_pregunta(vida)
 
 
-    def mostrar_pregunta(self):
+    def mostrar_pregunta(self,vida):
    
         while  self.preguntas_contestada != True:
             pygame.draw.rect(self.ventana,(225,225,225),self.rectangulo_pregunta)
@@ -267,6 +267,7 @@ class Pregunta():
                     if self.boton_A.collidepoint(event.pos):
                         if self.A == self.respuesta:
                             self.pregunta_correcto=True
+                            vida.vidas+=1
                         else:
                             self.pregunta_correcto=False
                             
@@ -275,6 +276,7 @@ class Pregunta():
                     if self.boton_B.collidepoint(event.pos):
                         if self.B == self.respuesta:
                             self.pregunta_correcto=True
+                            vida.vidas+=1
                         else:
                             self.pregunta_correcto=False
                         self.preguntas_contestada=True
@@ -282,6 +284,7 @@ class Pregunta():
                     if self.boton_C.collidepoint(event.pos):
                         if self.C == self.respuesta:
                             self.pregunta_correcto=True
+                            vida.vidas+=1
                         else:
                             self.pregunta_correcto=False
                         self.preguntas_contestada=True  
@@ -289,6 +292,7 @@ class Pregunta():
                     if self.boton_D.collidepoint(event.pos):
                         if self.D == self.respuesta:
                             self.pregunta_correcto=True
+                            vida.vidas+=1
                         else:
                             self.pregunta_correcto=False
                         self.preguntas_contestada=True

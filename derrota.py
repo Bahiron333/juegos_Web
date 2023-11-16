@@ -1,24 +1,16 @@
 import pygame
 import pygame.locals 
 import sys
-import sonido
-
-venHor = 800
-venVer = 600
 
 def main_derrota():
     
     pygame.init()
 
-    sonido_victoria = sonido.Sonido("sound/gameplay/derrota.wav",0.5)
-    sonido_boton1 = sonido.Sonido("sound/start/boton_mouse.wav",0.7)
-    contador_sonido = 1
-
     main_image = pygame.image.load("img/derrota.png")
     icono = pygame.image.load("img/icono.ico")
     pygame.display.set_icon(icono)
     pygame.display.set_caption("Pong")
-    windows_infor = pygame.display.set_mode((800,600))
+    windows_infor = pygame.display.set_mode((1000,562))
     windows_infor.blit(main_image,(0,0))
 
     font_letrero_continuar = pygame.font.SysFont('arial',40,bold=True)
@@ -30,17 +22,12 @@ def main_derrota():
 
     while informacion:
 
-        if contador_sonido <= 1:
-            sonido_victoria.sound_play()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if boton.collidepoint(event.pos):
-                    sonido_victoria.sound_stop()
-                    sonido_boton1.set_ruta("sound/start/boton.wav")
-                    sonido_boton1.sound_play() 
+                if boton.collidepoint(event.pos): 
                     informacion=False
                     return False
             
@@ -54,5 +41,5 @@ def main_derrota():
             letrero_continuar = font_letrero_continuar.render("OK",True,(255,255,255))
 
         windows_infor.blit(letrero_continuar,(100,285))
-        contador_sonido+=1
         pygame.display.update()
+

@@ -17,7 +17,7 @@ class Ladrillo:
            self.dificultad_lad=2
         self.ladrillo_pregunta = lad_pregunta
         self.ladrillo_sin_romper = True
-        self.responder_prgunta = False
+        self.responder_pregunta = False
         self.tipo_ladrillo()
     
     #golpear la pelota lado de abajo
@@ -61,10 +61,10 @@ class Ladrillo:
         if self.dificultad_lad == 0 and self.ladrillo_pregunta == True:
            self.imagen_ladrillo = pygame.image.load("img/ladrillo_pregunta.png").convert_alpha()
            self.ladrillo_sin_romper = True
-           self.responder_prgunta = True
+           self.responder_pregunta = True
         if self.dificultad_lad == 0 and self.ladrillo_pregunta != True:
            self.ladrillo_sin_romper=False#es verdadero cuando el ladrillo esta roto
-           self.responder_prgunta = False
+           self.responder_pregunta = False
     
 
 

@@ -2,37 +2,24 @@ import pygame
 import pygame.locals 
 import sys
 
-venHor = 800
-venVer = 600
-
-def main_victoria(ganador):
+def main_victoria():
     
     pygame.init()
 
     icono = pygame.image.load("img/icono.ico")
     pygame.display.set_icon(icono)
     pygame.display.set_caption("Pong")
-    windows_infor = pygame.display.set_mode((800,600))
+    windows_infor = pygame.display.set_mode((1000,562))
 
 
     font_texto= pygame.font.SysFont('arial',60,bold=False)
-   
-
-    if ganador == 1:
-        main_image = pygame.image.load("img/victoria.png")
-        letrero_texto = font_texto.render("!Has Ganado¡",True,(0,0,0))
-        windows_infor.blit(main_image,(0,0))
-        windows_infor.blit(letrero_texto,(280,350))
-    elif ganador == 2:
-        main_image = pygame.image.load("img/ganador_jug1.png")
-        windows_infor.blit(main_image,(0,0))
-    elif ganador == 3:
-        main_image = pygame.image.load("img/ganador_jug2.png")
-        windows_infor.blit(main_image,(0,0))
-
+    main_image = pygame.image.load("img/victoria.png")
+    letrero_texto = font_texto.render("!Has Ganado¡",True,(0,0,0))
+    windows_infor.blit(main_image,(0,0))
+    windows_infor.blit(letrero_texto,(280,350))
 
     font_letrero_continuar = pygame.font.SysFont('arial',40,bold=True)
-    letrero_continuar = font_letrero_continuar.render("Ok",True,(0,0,0))
+    letrero_continuar = font_letrero_continuar.render("Inicio",True,(0,0,0))
   
     boton = pygame.Rect(280,480,230,60)
     windows_infor.blit(letrero_continuar,(370,488))
@@ -54,12 +41,12 @@ def main_victoria(ganador):
 
         if boton.x <= x <= boton.x + 230 and boton.y <=y <= boton.y+60:
             pygame.draw.rect(windows_infor,("#FFA500"),boton)
-            letrero_continuar = font_letrero_continuar.render("OK",True,(255,255,255))
+            letrero_continuar = font_letrero_continuar.render("inicio",True,(255,255,255))
         else:
             pygame.draw.rect(windows_infor,("#FFD700"),boton)
-            letrero_continuar = font_letrero_continuar.render("OK",True,(0,0,0))
+            letrero_continuar = font_letrero_continuar.render("inicio",True,(0,0,0))
 
         windows_infor.blit(letrero_continuar,(370,488))
-        contador_sonido+=1
         pygame.display.update()
+
 

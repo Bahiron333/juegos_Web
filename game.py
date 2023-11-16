@@ -4,6 +4,8 @@ import sys
 from raqueta import *
 from pelota import *
 from ladrillo import *
+from derrota import *
+from victoria import *
 from main_pregunta import *
 
 def main_game():
@@ -90,6 +92,7 @@ def main_game():
     #variable para selecionar el numero de la pregunta 
     num_pregunta = 15
 
+
     while True:
 
         win_list.blit(fondo_list,(0,0))
@@ -99,9 +102,16 @@ def main_game():
         paleta.golpear(pelota)
 
         pelota.movimiento()
-        pelota.rebotar()
+        pelota.rebotar(paleta)
 
         num_pregunta = function_ladrillos(ladrillos,win_list,pelota,num_pregunta)
+
+        print(pelota.vidas)
+        if pelota.vidas <= 0:
+            main_derrota()
+            print(pelota.vidas)
+            break
+
 
         for event in pygame.event.get():
 
@@ -134,8 +144,8 @@ def function_ladrillos(ladrillos,ventana,pelota,numero_pregunta):
             ventana.blit(ladrillo.imagen_ladrillo,(ladrillo.x,ladrillo.y))
             ladrillo.tipo_ladrillo()
             ladrillo.golpear_ladrillo(pelota)
-            if ladrillo.responder_prgunta == True and ladrillo.dificultad_lad == -1:
-               pregunta.escoger_pregunta(numero_pregunta)
+            if ladrillo.responder_pregunta == True and ladrillo.dificultad_lad == -1:
+               pregunta.escoger_pregunta(numero_pregunta,pelota)
                ladrillo.ladrillo_sin_romper=False
                numero_pregunta -= 1
     return numero_pregunta
