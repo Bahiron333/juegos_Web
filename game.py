@@ -29,20 +29,20 @@ def main_game():
 
     #ladrillos list
     ladrillos = [ 
-        
+
         #Primera fila
-        Ladrillo("dificil",False,(5,20)), 
+        Ladrillo("facil",False,(5,20)), 
         Ladrillo("medio",True,(131,20)), 
         Ladrillo("dificil",False,(258,20)), 
         Ladrillo("dificil",False,(378,20)), 
-        Ladrillo("dificil",False,(509,20)), 
-        Ladrillo("medio",True,(635,20)), 
+        Ladrillo("medio",False,(509,20)), 
+        Ladrillo("dificil",True,(635,20)), 
         Ladrillo("dificil",False,(761,20)),
-        Ladrillo("dificil",True,(887,20)),
+        Ladrillo("facil",True,(887,20)),
 
         #segunda fila
-        Ladrillo("dificil",False,(5,71)), 
-        Ladrillo("medio",False,(131,71)), 
+        Ladrillo("medio",False,(5,71)), 
+        Ladrillo("dificil",False,(131,71)), 
         Ladrillo("dificil",True,(258,71)), 
         Ladrillo("medio",False,(378,71)), 
         Ladrillo("dificil",True,(509,71)), 
@@ -52,42 +52,42 @@ def main_game():
 
         #tercera fila
         Ladrillo("dificil",False,(5,121)), 
-        Ladrillo("medio",False,(131,121)), 
+        Ladrillo("facil",False,(131,121)), 
         Ladrillo("medio",True,(258,121)), 
         Ladrillo("facil",False,(378,121)), 
         Ladrillo("medio",True,(509,121)), 
         Ladrillo("dificil",False,(635,121)), 
-        Ladrillo("facil",False,(761,121)),
+        Ladrillo("dificil",False,(761,121)),
         Ladrillo("medio",True,(887,121)),
 
         #cuarta fila
         Ladrillo("medio",True,(5,171)), 
         Ladrillo("dificil",False,(131,171)), 
-        Ladrillo("medio",False,(258,171)), 
+        Ladrillo("facil",False,(258,171)), 
         Ladrillo("dificil",False,(378,171)), 
-        Ladrillo("medio",False,(509,171)), 
-        Ladrillo("dificil",False,(635,171)), 
+        Ladrillo("dificil",False,(509,171)), 
+        Ladrillo("medio",False,(635,171)), 
         Ladrillo("facil",True,(761,171)),
         Ladrillo("dificil",False,(887,171)),
 
         #quinta fila
-        Ladrillo("medio",True,(5,221)), 
+        Ladrillo("dificil",True,(5,221)), 
         Ladrillo("facil",False,(131,221)), 
         Ladrillo("medio",True,(258,221)), 
         Ladrillo("facil",False,(378,221)), 
-        Ladrillo("facil",True,(509,221)), 
+        Ladrillo("medio",True,(509,221)), 
         Ladrillo("facil",False,(635,221)), 
-        Ladrillo("facil",False,(761,221)),
+        Ladrillo("dificil",False,(761,221)),
         Ladrillo("medio",False,(887,221)),
 
         #sexta fila
-        Ladrillo("medio",False,(5,271)), 
-        Ladrillo("dificil",True,(131,271)), 
+        Ladrillo("facil",False,(5,271)), 
+        Ladrillo("medio",True,(131,271)), 
         Ladrillo("facil",False,(258,271)), 
-        Ladrillo("dificil",False,(378,271)), 
+        Ladrillo("medio",False,(378,271)), 
         Ladrillo("facil",False,(509,271)), 
         Ladrillo("facil",True,(635,271)), 
-        Ladrillo("facil",False,(761,271)),
+        Ladrillo("medio",False,(761,271)),
         Ladrillo("facil",False,(887,271)),
     ]
         
@@ -115,6 +115,9 @@ def main_game():
         if pelota.vidas <= 0:
             main_derrota()
             break
+        if victoria(ladrillos):
+            main_victoria()
+            break
 
 
         for event in pygame.event.get():
@@ -134,9 +137,20 @@ def main_game():
                     paleta.dir_x=0
 
 
-
+        #pygame.time.Clock().tick(70)
         pygame.display.update()
 
+#funcion que comprueba si todos los ladrillos estan roto
+def victoria(ladrillos):
+
+    ganador = False
+    for ladrillo in ladrillos:
+        if ladrillo.ladrillo_sin_romper:#si el ladrillo no esta roto no hay victoria
+            ganador = False
+            break
+        else:
+            ganador = True
+    return ganador 
 
 
 def function_ladrillos(ladrillos,ventana,pelota,numero_pregunta):

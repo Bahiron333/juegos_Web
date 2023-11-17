@@ -44,5 +44,5 @@ def main_derrota():
         windows_infor.blit(letrero_continuar,(375,428))
         pygame.display.update()
 
-main_derrota()
+
 

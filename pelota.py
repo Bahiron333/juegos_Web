@@ -8,6 +8,8 @@ ventanaVer=562#ventana vertical
 
 class PelotaP:
     def __init__(self,fichero_imagen):
+
+        pygame.init()
         self.imagen = pygame.image.load(fichero_imagen).convert_alpha()#imagen pelota
         self.ancho,self.alto=self.imagen.get_size()#tamaño pelota
         self.x=ventanaHor/2-self.ancho/2#posicionar y en el centro

@@ -44,5 +44,4 @@ def main_victoria():
         windows_infor.blit(letrero_continuar,(408,380))
         pygame.display.update()
 
-main_victoria()
 

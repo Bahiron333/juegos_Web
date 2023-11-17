@@ -6,6 +6,7 @@ class Pregunta():
 
     def __init__(self,ventana):
 
+        pygame.init()
         #ventana de fondo
         self.ventana = ventana
         self.text_question =[] #texto de la pregunta
@@ -74,7 +75,7 @@ class Pregunta():
         #Preguntas 4
         elif self.num_pregunta == 4:
             self.text_question.append("¿Cuántos metros recorre una")
-            self.text_question.append("motocicleta en un segundo si")
+            self.text_question.append("motocicleta en un segundo, si")
             self.text_question.append("circula a una velocidad de 90")
             self.text_question.append("km/h?")
             self.ubicacion_text_y = 150

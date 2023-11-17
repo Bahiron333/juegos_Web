@@ -5,6 +5,7 @@ class Ladrillo:
 
     def __init__(self,dificultad,lad_pregunta,posicion):
 
+        pygame.init()
         self.imagen_ladrillo = pygame.image.load("img/ladrillo_facil.png").convert_alpha()
         self.ancho, self.alto = self.imagen_ladrillo.get_size()
         self.x, self.y = posicion
